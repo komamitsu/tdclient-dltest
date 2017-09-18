@@ -1,6 +1,7 @@
 extern crate td_client;
 use td_client::client::*;
 use std::env;
+use std::fs::File;
 
 fn main() {
     let mut args = env::args();
@@ -9,13 +10,8 @@ fn main() {
     let jobid = args.next().unwrap();
     let client = Client::new(apikey.as_str());
 
-    client.each_row_in_job_result(jobid.parse::<u64>().unwrap(), &|xs| {
-        let mut s = String::new();
-        for x in xs {
-            s.push_str(format!("{:?}", x).as_str());
-        }
-        true
-    }).unwrap();
+    let result_file = File::create("/dev/null").unwrap();
+    client.download_job_result(jobid.parse::<u64>().unwrap(), &result_file).unwrap();
 
     println!("finish");
 }
