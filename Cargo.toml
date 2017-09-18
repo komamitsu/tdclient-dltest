@@ -1,0 +1,8 @@
+[package]
+name = "tdclient-dltest"
+version = "0.1.0"
+authors = ["Mitsunori Komatsu <komamitsu@gmail.com>"]
+
+[dependencies]
+td-client = "0.6"
+# td-client = {git = "https://github.com/komamitsu/td-client-rust.git", branch = "accept-encoding"}
